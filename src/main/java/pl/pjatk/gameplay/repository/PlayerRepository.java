@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import pl.pjatk.gameplay.model.Player;
 
 @Repository
-public interface PlayerRepository extends JpaRepository<Player,Long> {
+public interface PlayerRepository extends JpaRepository<Player, Long> {
 }

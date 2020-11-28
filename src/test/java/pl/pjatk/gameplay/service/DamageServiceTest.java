@@ -10,25 +10,25 @@ public class DamageServiceTest {
     private DamageService damageService = new DamageService();
 
     @Test
-    void shouldHealPlayer(){
-        Player player = new Player("nickname",95,10);
-        damageService.heal(player,5);
+    void shouldHealPlayer() {
+        Player player = new Player("nickname", 95, 10);
+        damageService.heal(player, 5);
 
         assertThat(player.getHealth()).isEqualTo(100);
 
     }
 
     @Test
-    void shouldNotHealPlayer(){
-        Player player = new Player("nickname",95,10);
+    void shouldNotHealPlayer() {
+        Player player = new Player("nickname", 95, 10);
 
-        damageService.heal(player,1000);
+        damageService.heal(player, 1000);
         assertThat(player.getHealth()).isEqualTo(95);
 
     }
 
     @Test
-    void  shouldDebuffPlayer() {
+    void shouldDebuffPlayer() {
         Player player = new Player("nickname", 100, 10);
         damageService.debuff(player, 5);
 
@@ -38,26 +38,27 @@ public class DamageServiceTest {
     }
 
     @Test
-    void shouldNotDebuffPlayer(){
-        Player player = new Player("nickname",100,10);
+    void shouldNotDebuffPlayer() {
+        Player player = new Player("nickname", 100, 10);
 
-        damageService.debuff(player,1000);
+        damageService.debuff(player, 1000);
 
         assertThat(player.getAttack()).isEqualTo(10);
 
     }
+
     @Test
-    void shouldBuffPlayer(){
-        Player player = new Player("nickname",100,10);
-        damageService.buff(player,5);
+    void shouldBuffPlayer() {
+        Player player = new Player("nickname", 100, 10);
+        damageService.buff(player, 5);
 
         assertThat(player.getAttack()).isEqualTo(15);
     }
 
     @Test
-    void shouldRemoveBuffFromPlayer(){
+    void shouldRemoveBuffFromPlayer() {
 
-        Player player = new Player("nickname",100,150);
+        Player player = new Player("nickname", 100, 150);
         damageService.removeBuff(player);
 
         assertThat(player.getAttack()).isEqualTo(100);

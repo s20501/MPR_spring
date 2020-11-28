@@ -14,49 +14,49 @@ public class PlayerController {
 
     private PlayerService playerService;
 
-    public PlayerController(PlayerService playerService){
+    public PlayerController(PlayerService playerService) {
         this.playerService = playerService;
 
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<Player>> findAll(){
+    public ResponseEntity<List<Player>> findAll() {
         return ResponseEntity.ok(playerService.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Player> findById(@PathVariable Long id){
+    public ResponseEntity<Player> findById(@PathVariable Long id) {
 
         Optional<Player> optionalPlayer = playerService.findById((id));
 
 
-        if(optionalPlayer.isPresent()){
+        if (optionalPlayer.isPresent()) {
             return ResponseEntity.ok(optionalPlayer.get());
 
-        }else{
-            return  ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Player> save(@RequestBody Player player){
-        return  ResponseEntity.ok(playerService.save(player));
+    public ResponseEntity<Player> save(@RequestBody Player player) {
+        return ResponseEntity.ok(playerService.save(player));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id){
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         playerService.deleteById(id);
-        return  ResponseEntity.ok().build();
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Player> update(@RequestBody Player player){
+    public ResponseEntity<Player> update(@RequestBody Player player) {
         return ResponseEntity.ok(playerService.update(player));
 
     }
 
     @PostMapping("/attack")
-    public ResponseEntity<Player> attack(@RequestBody Long targetId, Long attackerId){
-        return  ResponseEntity.ok(playerService.attack(targetId,attackerId));
+    public ResponseEntity<Player> attack(@RequestBody Long targetId, Long attackerId) {
+        return ResponseEntity.ok(playerService.attack(targetId, attackerId));
     }
 }

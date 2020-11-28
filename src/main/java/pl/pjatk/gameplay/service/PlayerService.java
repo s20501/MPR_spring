@@ -44,20 +44,21 @@ public class PlayerService {
         }
 
     }
-    public Player attack(Long targetId,Long attackerId ){
+
+    public Player attack(Long targetId, Long attackerId) {
 
         Optional<Player> getTarget = playerRepository.findById(targetId);
         Optional<Player> getAttacker = playerRepository.findById(attackerId);
 
 
-        if(getTarget.isEmpty() || getAttacker.isEmpty()){
+        if (getTarget.isEmpty() || getAttacker.isEmpty()) {
             throw new RuntimeException();
         }
 
         Player target = getTarget.get();
         Player attacker = getAttacker.get();
 
-        damageService.dealDamage(target,attacker);
+        damageService.dealDamage(target, attacker);
         return playerRepository.save(target);
     }
 }
