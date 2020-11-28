@@ -57,7 +57,7 @@ public class PlayerService {
         Player target = getTarget.get();
         Player attacker = getAttacker.get();
 
-        damageService.deal(target,attacker);
+        damageService.dealDamage(target,attacker);
         return playerRepository.save(target);
     }
 }
