@@ -22,6 +22,13 @@ public class Player {
         this.attack = attack;
     }
 
+    public Player(String nickname, int health, int attack) {
+        this.nickname = nickname;
+        this.health = health;
+        this.attack = attack;
+
+    }
+
     public int getAttack() {
         return attack;
     }
