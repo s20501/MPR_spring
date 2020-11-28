@@ -12,20 +12,52 @@ public class PlayerService {
 
     private PlayerRepository playerRepository;
 
-    public PlayerService(PlayerRepository playerRepository){
+    private DamageService damageService;
+
+    public PlayerService(PlayerRepository playerRepository, DamageService damageService) {
         this.playerRepository = playerRepository;
+        this.damageService = damageService;
 
     }
 
-   public List<Player> findAll(){
-       return  playerRepository.findAll();
-   }
+    public List<Player> findAll() {
+        return playerRepository.findAll();
+    }
 
-   public Optional<Player> findById(Long id){
+    public Optional<Player> findById(Long id) {
         return playerRepository.findById(id);
-   }
+    }
 
-   public Player save(Player player){
+    public Player save(Player player) {
         return playerRepository.save(player);
-   }
+    }
+
+    public void deleteById(Long id) {
+        playerRepository.deleteById(id);
+    }
+
+    public Player update(Player player) {
+        if (playerRepository.findById(player.getId()).isEmpty()) {
+            throw new RuntimeException();
+        } else {
+            return playerRepository.save(player);
+        }
+
+    }
+    public Player attack(Long targetId,Long attackerId ){
+
+        Optional<Player> getTarget = playerRepository.findById(targetId);
+        Optional<Player> getAttacker = playerRepository.findById(attackerId);
+
+
+        if(getTarget.isEmpty() || getAttacker.isEmpty()){
+            throw new RuntimeException();
+        }
+
+        Player target = getTarget.get();
+        Player attacker = getAttacker.get();
+
+        damageService.deal(target,attacker);
+        return playerRepository.save(target);
+    }
 }

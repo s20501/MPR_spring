@@ -38,8 +38,25 @@ public class PlayerController {
         }
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<Player> save(@RequestBody Player player){
         return  ResponseEntity.ok(playerService.save(player));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id){
+        playerService.deleteById(id);
+        return  ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Player> update(@RequestBody Player player){
+        return ResponseEntity.ok(playerService.update(player));
+
+    }
+
+    @PostMapping("/attack")
+    public ResponseEntity<Player> attack(@RequestBody Long targetId, Long attackerId){
+        return  ResponseEntity.ok(playerService.attack(targetId,attackerId));
     }
 }
