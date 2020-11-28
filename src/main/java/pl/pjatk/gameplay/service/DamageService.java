@@ -34,7 +34,7 @@ public class DamageService {
         return player;
     }
 
-    public Player removeBuff(Player player, int buffValue) {
+    public Player removeBuff(Player player) {
         player.setAttack(100);
         return player;
     }
