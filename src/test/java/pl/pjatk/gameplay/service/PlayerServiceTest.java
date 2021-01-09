@@ -21,9 +21,6 @@ public class PlayerServiceTest {
     @Mock
     private PlayerRepository playerRepository;
 
-    @Mock
-    private DamageService damageService;
-
     @InjectMocks
     private PlayerService playerService;
 

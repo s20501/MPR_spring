@@ -25,8 +25,10 @@ public class PlayerService {
     }
 
     public Optional<Player> findById(Long id) {
+
         return playerRepository.findById(id);
     }
+
 
     public Player save(Player player) {
         return playerRepository.save(player);
@@ -60,5 +62,9 @@ public class PlayerService {
 
         damageService.dealDamage(target, attacker);
         return playerRepository.save(target);
+    }
+
+    public void deleteAll(){
+        playerRepository.deleteAll();
     }
 }

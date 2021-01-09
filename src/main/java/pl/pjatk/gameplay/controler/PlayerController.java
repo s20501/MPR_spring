@@ -38,6 +38,11 @@ public class PlayerController {
         }
     }
 
+    @GetMapping("/hello")
+    public ResponseEntity<String> helo() {
+        return ResponseEntity.ok("Hello world");
+    }
+
     @PostMapping("/add")
     public ResponseEntity<Player> save(@RequestBody Player player) {
         return ResponseEntity.ok(playerService.save(player));
