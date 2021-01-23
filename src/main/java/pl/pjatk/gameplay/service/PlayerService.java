@@ -1,6 +1,7 @@
 package pl.pjatk.gameplay.service;
 
 import org.springframework.stereotype.Service;
+import pl.pjatk.gameplay.model.Message;
 import pl.pjatk.gameplay.model.Player;
 import pl.pjatk.gameplay.repository.PlayerRepository;
 
@@ -31,7 +32,9 @@ public class PlayerService {
 
 
     public Player save(Player player) {
+        player.getMessageList().add(new Message("sasasdasd",player));
         return playerRepository.save(player);
+
     }
 
     public void deleteById(Long id) {

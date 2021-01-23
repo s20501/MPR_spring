@@ -9,6 +9,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import pl.pjatk.gameplay.model.Player;
 import pl.pjatk.gameplay.service.PlayerService;
 
+import java.util.List;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -39,7 +41,7 @@ class PlayerControllerTest {
 
     @Test
     void shouldReturnNotFound() throws  Exception{
-        Player player = playerService.save(new Player("25",3,4));
+        Player player = playerService.save(new Player("25",3,4, List.of()));
         mockMvc.perform(get("/player/1")).andDo(print()).andExpect(status().isOk()).andExpect(content().string(CoreMatchers.equalTo("{\"id\":1,\"nickname\":\"25\",\"health\":3,\"attack\":4}")));
 
 
